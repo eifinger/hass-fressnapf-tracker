@@ -1,0 +1,81 @@
+---
+name: CI
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Rye
+        run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
+        shell: bash
+      - run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        shell: bash
+      - name: Pin python-version ${{ matrix.python-version }}
+        run: rye pin ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          rye sync --no-lock
+      - name: Lint
+        run: |
+          SKIP=no-commit-to-branch rye run pre-commit run --all-files
+  hacs:
+    name: HACS Action
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: HACS Action
+        uses: "hacs/action@main"
+        with:
+          category: "integration"
+          ignore: "brands"
+  hass_validate:
+    name: Hassfest
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - name: Hassfest
+        uses: home-assistant/actions/hassfest@master
+  noop-release:
+    name: Semantic Release Noop
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: github.ref != 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Python Semantic Release Noop
+        uses: python-semantic-release/python-semantic-release@v7.34.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          additional_options: "--noop"
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Python Semantic Release
+        uses: python-semantic-release/python-semantic-release@v7.34.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

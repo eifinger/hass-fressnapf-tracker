@@ -1,0 +1,16 @@
+{
+  "domain": "fressnapf_tracker",
+  "name": "Fressnapf Tracker",
+  "codeowners": [
+    "@eifinger"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/eifinger/hass-fressnapf-tracker",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/eifinger/hass-fressnapf-tracker/issues",
+  "requirements": [
+    "httpx"
+  ],
+  "version": "1.0.0"
+}

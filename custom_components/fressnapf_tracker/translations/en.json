@@ -1,0 +1,20 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "description": "If you need help with the configuration have a look here: https://github.com/eifinger/hass-fressnapf-tracker",
+                "data": {
+                    "serialnumber": "Serialnumber",
+                    "device_token": "Device Token",
+                    "auth_token": "Auth Token"
+                }
+            }
+        },
+        "error": {
+            "auth": "Username/Password is wrong."
+        },
+        "abort": {
+            "already_configured": "This account is already configured."
+        }
+    }
+}

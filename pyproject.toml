@@ -1,0 +1,72 @@
+[project]
+name = "hass-fressnapf-tracker"
+version = "1.0.0"
+description = "Homeassistant Custom Component for fressnapf_tracker"
+license = "MIT"
+readme = "README.md"
+authors = [
+    { name = "Kevin Stillhammer", email = "kevin.stillhammer@gmail.com" }
+]
+repository = "http://github.com/eifinger/hass-fressnapf_tracker"
+keywords = [
+    "aiohttp",
+    "asyncio",
+    "fressnapf",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "httpx>=0.24.1",
+    "black>=23.3.0",
+    "blacken.docs>=1.14.0",
+    "blacken-docs>=1.14.0",
+    "codespell>=2.2.5",
+    "mypy>=1.4.1",
+    "pre-commit>=3.3.3",
+    "vulture>=2.7",
+    "yamllint>=1.32.0",
+    "ruff>=0.0.277",
+    "pytest-homeassistant-custom-component>=0.13.41",
+    "pre-commit-hooks>=4.4.0",
+    "respx>=0.20.1",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report term-missing --cov=custom_components --asyncio-mode=auto tests"
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
+
+[tool.vulture]
+min_confidence = 80
+paths = ["custom_components", "tests"]
+
+[tool.semantic_release]
+version_source = "tag"
+commit_version_number = true
+version_toml = "pyproject.toml:tool.poetry.version"
+version_pattern = "custom_components/fressnapf_tracker/manifest.json:\"version\": \"{version}\""
+version_variable = "custom_components/fressnapf_tracker/const.py:VERSION"
+commit_subject = "chore(release): {version}"
+build_command = false
+upload_to_repository = false
+upload_to_release = false
+branch = "main"

@@ -20,11 +20,7 @@ jobs:
         python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Rye
-        run: curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash
-        shell: bash
-      - run: echo "$HOME/.rye/shims" >> $GITHUB_PATH
-        shell: bash
+      - uses: eifinger/setup-rye@v1
       - name: Pin python-version ${{ matrix.python-version }}
         run: rye pin ${{ matrix.python-version }}
       - name: Install dependencies

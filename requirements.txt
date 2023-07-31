@@ -58,7 +58,7 @@ pylint-per-file-ignores==1.1.0
 pyopenssl==23.2.0
 pytest==7.3.1
 pytest-aiohttp==1.0.4
-pytest-asyncio==0.20.3
+pytest-asyncio==0.21.1
 pytest-cov==3.0.0
 pytest-freezer==0.4.6
 pytest-homeassistant-custom-component==0.13.45

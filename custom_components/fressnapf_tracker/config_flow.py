@@ -24,12 +24,11 @@ class FressnapfTrackerFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):  # 
         """Handle a flow initialized by the user."""
         self._errors = {}
 
-        entries = self._async_current_entries()
-        for entry in entries:
-            if entry.data[CONF_SERIALNUMBER] == user_input[CONF_SERIALNUMBER]:
-                return self.async_abort(reason="already_configured")
-
         if user_input is not None:
+            for entry in self._async_current_entries():
+                if entry.data[CONF_SERIALNUMBER] == user_input[CONF_SERIALNUMBER]:
+                    return self.async_abort(reason="already_configured")
+
             return self.async_create_entry(
                 title=user_input[CONF_SERIALNUMBER],
                 data=user_input,

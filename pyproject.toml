@@ -30,6 +30,9 @@ build-backend = "hatchling.build"
 [tool.hatch.metadata]
 allow-direct-references = true
 
+[tool.hatch.build.targets.wheel]
+packages = ["custom_components/fressnapf_tracker"]
+
 [tool.rye]
 managed = true
 dev-dependencies = [

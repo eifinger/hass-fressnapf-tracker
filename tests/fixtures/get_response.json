@@ -1,0 +1,51 @@
+{
+    "name": "Test",
+    "serialnumber": "223766429",
+    "additional_parameters": "{\"isHybrid\":true,\"isShowSpecialFood\":false,\"isShowInfoText\":true,\"isSpayed\":false,\"birthday\":\"0-0-2022\",\"idfindefix\":\"\",\"activeGender\":\"female\",\"weight\":\"21.5 kg\",\"idealWeight\":\"21.5 kg\",\"activeFeed\":[\"dry\"],\"specialFoods\":[],\"breed\":[\"Labrador Retriever\",\"Podenco\"],\"weightList\":[{\"weight\":\"21.1 kg\",\"date\":1672921026347},{\"weight\":\"21.1 kg\",\"date\":1672938562762},{\"weight\":\"21.1 kg\",\"date\":1672938612879},{\"weight\":\"21.1 kg\",\"date\":1672938629727},{\"weight\":\"21.1 kg\",\"date\":1672951640709},{\"weight\":\"21.6 kg\",\"date\":1674757692105},{\"weight\":\"21.3 kg\",\"date\":1679611151685},{\"weight\":\"21.5 kg\",\"date\":1681380139784},{\"weight\":\"21.5 kg\",\"date\":1682760816983}]}",
+    "icon": null,
+    "last_position_accuracy": 30,
+    "last_position_timestamp": "2023-12-16T10:50:56.000+01:00",
+    "last_seen_timestamp": "2023-12-16T10:50:56.000+01:00",
+    "inside_geofence": false,
+    "last_seen": "weniger als eine Minute",
+    "last_position": "weniger als eine Minute",
+    "battery": 81,
+    "charging": true,
+    "tracker_settings": {
+        "generation": "2.1",
+        "type": "dog",
+        "features": {
+            "flash_light": true,
+            "sleep_mode": true,
+            "geofence": false
+        },
+        "sales_channel": null
+    },
+    "led_brightness": {
+        "status": "ok",
+        "value": 100
+    },
+    "deep_sleep": {
+        "status": "ok",
+        "value": 0
+    },
+    "led_activatable": {
+        "has_led": true,
+        "seen_recently": true,
+        "nonempty_battery": true,
+        "not_charging": false,
+        "overall": false
+    },
+    "servicebooking": {
+        "has_current_servicebooking": true,
+        "servicebooking_until": "2025-01-05T00:00:00.000+01:00",
+        "days_until_servicebooking_ends": 385
+    },
+    "position": {
+        "lat": "38.013015",
+        "lng": "9.265448",
+        "created_at": "2023-12-16T10:50:56.000+01:00",
+        "sampled_at": "2023-12-16T10:50:56.000+01:00",
+        "accuracy": 30
+    }
+}

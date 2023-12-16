@@ -1,5 +1,8 @@
 """Global fixtures for fressnapf_tracker integration."""
 import pytest
+import json
+from httpx import Response
+from pytest_homeassistant_custom_component.common import load_fixture
 
 pytest_plugins = "pytest_homeassistant_custom_component"  # pylint: disable=invalid-name
 
@@ -19,3 +22,16 @@ def expected_lingering_timers() -> bool:
     This should be removed when all lingering timers have been cleaned up.
     """
     return True
+
+
+@pytest.fixture(name="get_response")
+async def get_response_fixture(respx_mock):
+    """Mock the get response."""
+    respx_mock.get(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token"
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("get_response.json")),
+        )
+    )

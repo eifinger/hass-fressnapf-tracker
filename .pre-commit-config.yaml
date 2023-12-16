@@ -71,7 +71,8 @@ repos:
         exclude: |
           (?x)^(
               .lock|
-              CHANGELOG.md
+              CHANGELOG.md|
+              tests/fixtures/.*
           )$
         entry: rye run codespell --ignore-words=.codespell
       - id: debug-statements

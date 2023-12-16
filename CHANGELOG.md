@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2023-12-16)
+
+### Feature
+
+* Add switch deep_sleep,led ([`0220ea8`](https://github.com/eifinger/hass-fressnapf-tracker/commit/0220ea8542d0b88e149b70c2204bc12e1d42139b))
+* Add sensors charging,deep_sleep,led_brightness ([`b51417d`](https://github.com/eifinger/hass-fressnapf-tracker/commit/b51417de20f77504155eeb5aa0d94354b0944d83))
+
 ## v0.1.2 (2023-12-11)
 
 ### Fix

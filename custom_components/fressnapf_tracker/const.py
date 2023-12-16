@@ -13,6 +13,7 @@ PLATFORMS = [
     Platform.BINARY_SENSOR,
     Platform.DEVICE_TRACKER,
     Platform.SENSOR,
+    Platform.SWITCH,
 ]
 
 # Configuration and options

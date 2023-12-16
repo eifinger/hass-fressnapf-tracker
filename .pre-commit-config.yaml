@@ -2,18 +2,6 @@
 repos:
   - repo: local
     hooks:
-      - id: black
-        name: ☕️ Format using black
-        language: system
-        types: [python]
-        entry: rye run black
-        require_serial: true
-      - id: blacken-docs
-        name: ☕️ Format documentation examples using black
-        language: system
-        files: '\.(rst|md|markdown|py|tex)$'
-        entry: rye run blacken-docs
-        require_serial: true
       - id: check-ast
         name: 🐍 Check Python AST
         language: system
@@ -134,14 +122,19 @@ repos:
         types: [python]
         pass_filenames: false
         additional_dependencies: ["pyright@1.1.99"]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+      - id: ruff-format
+        name: ☕️ Format using ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
       - id: ruff
-        name: ⚡️ Check with ruff
-        language: system
-        entry: rye run ruff check
-        types: [python]
-        args: ["--force-exclude"]
+        name: ✅ Lint using ruff
+        args: [--fix, --exit-non-zero-on-fix]
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v3.0.0-alpha.6"
+    rev: "v4.0.0-alpha.6"
     hooks:
       - id: prettier
         name: 💄 Ensuring files are prettier

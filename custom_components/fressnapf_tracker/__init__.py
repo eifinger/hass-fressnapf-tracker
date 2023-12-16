@@ -12,7 +12,6 @@ from typing import Any
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-
 from .const import (
     CONF_SERIALNUMBER,
     CONF_DEVICE_TOKEN,
@@ -76,7 +75,9 @@ class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator):
             }
             async with httpx.AsyncClient() as client:
                 result = await client.get(url, headers=headers)
-            return result.json()  # type: ignore
+            _LOGGER.debug("Result from fressnapf_tracker: %s", result.json())
+            transformed_result = self._transform_result(result.json())
+            return transformed_result  # type: ignore
         except Exception as exception:
             _LOGGER.debug(
                 "Failed to update fressnapf_tracker data: %s",
@@ -85,6 +86,15 @@ class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator):
                 stack_info=True,
             )
             raise UpdateFailed(exception) from exception
+
+    @staticmethod
+    def _transform_result(result: dict[str, Any]) -> dict[str, Any]:
+        """Flatten some entries."""
+        result["led_brightness_value"] = result["led_brightness"]["value"]
+        result["led_brightness_status"] = result["led_brightness"]["status"]
+        result["deep_sleep_value"] = result["deep_sleep"]["value"]
+        result["deep_sleep_status"] = result["deep_sleep"]["status"]
+        return result
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

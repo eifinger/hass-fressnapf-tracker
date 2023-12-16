@@ -10,6 +10,7 @@ VERSION = "0.1.2"
 ISSUE_URL = "https://github.com/eifinger/hass-fressnapf-tracker/issues"
 
 PLATFORMS = [
+    Platform.BINARY_SENSOR,
     Platform.DEVICE_TRACKER,
     Platform.SENSOR,
 ]

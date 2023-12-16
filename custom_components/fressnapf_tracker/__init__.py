@@ -5,13 +5,13 @@ https://github.com/eifinger/hass-fressnapf-tracker
 """
 # pyright: reportGeneralTypeIssues=false
 import logging
-import httpx
 from datetime import timedelta
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.helpers.httpx_client import get_async_client
 from .const import (
     CONF_SERIALNUMBER,
     CONF_DEVICE_TOKEN,
@@ -73,8 +73,8 @@ class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator):
                 "User-Agent": "okhttp/4.9.2",
                 "Content-Type": "application/json",
             }
-            async with httpx.AsyncClient() as client:
-                result = await client.get(url, headers=headers)
+            client = get_async_client(self.hass)
+            result = await client.get(url, headers=headers)
             _LOGGER.debug("Result from fressnapf_tracker: %s", result.json())
             transformed_result = self._transform_result(result.json())
             return transformed_result  # type: ignore

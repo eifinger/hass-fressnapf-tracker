@@ -1,4 +1,4 @@
-"""Tests for the fressnapf_tracker sensor."""
+"""Tests for the fressnapf_tracker switch."""
 from pytest_homeassistant_custom_component.common import (
     MockConfigEntry,
 )
@@ -6,7 +6,7 @@ from .const import MOCK_CONFIG
 from custom_components.fressnapf_tracker.const import DOMAIN
 
 
-async def test_sensor_battery(hass, get_response):
+async def test_switch_deep_sleep(hass, get_response, change_deep_sleep):
     """Test that sensor works."""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -18,11 +18,17 @@ async def test_sensor_battery(hass, get_response):
 
     await hass.async_block_till_done()
 
-    sensor = hass.states.get("sensor.test_battery")
-    assert sensor.state == "81"
+    await hass.services.async_call(
+        "switch",
+        "turn_on",
+        {"entity_id": "switch.test_deep_sleep"},
+        blocking=True,
+    )
+    await hass.async_block_till_done()
+    assert change_deep_sleep.called
 
 
-async def test_sensor_led_brightness(hass, get_response):
+async def test_switch_led(hass, get_response, change_led_brightness):
     """Test that sensor works."""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -34,5 +40,11 @@ async def test_sensor_led_brightness(hass, get_response):
 
     await hass.async_block_till_done()
 
-    sensor = hass.states.get("sensor.test_led_brightness")
-    assert sensor.state == "100"
+    await hass.services.async_call(
+        "switch",
+        "turn_on",
+        {"entity_id": "switch.test_led"},
+        blocking=True,
+    )
+    await hass.async_block_till_done()
+    assert change_led_brightness.called

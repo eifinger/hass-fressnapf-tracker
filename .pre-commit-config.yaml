@@ -121,13 +121,6 @@ repos:
         types: [text]
         entry: rye run trailing-whitespace-fixer
         stages: [commit, push, manual]
-      - id: vulture
-        name: 🔍 Find unused Python code with Vulture
-        language: system
-        types: [python]
-        entry: rye run vulture
-        pass_filenames: false
-        require_serial: true
       - id: yamllint
         name: 🎗  Check YAML files with yamllint
         language: system

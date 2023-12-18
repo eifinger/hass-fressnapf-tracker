@@ -12,6 +12,7 @@ ISSUE_URL = "https://github.com/eifinger/hass-fressnapf-tracker/issues"
 PLATFORMS = [
     Platform.BINARY_SENSOR,
     Platform.DEVICE_TRACKER,
+    Platform.LIGHT,
     Platform.SENSOR,
     Platform.SWITCH,
 ]

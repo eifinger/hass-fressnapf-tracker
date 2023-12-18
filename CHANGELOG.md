@@ -2,6 +2,20 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.0 (2023-12-18)
+
+### Feature
+
+* Add light ([`7e27948`](https://github.com/eifinger/hass-fressnapf-tracker/commit/7e27948d407d7b37c8f21eb7805cb14f5ce9b52c))
+
+### Breaking
+
+* add light ([`7e27948`](https://github.com/eifinger/hass-fressnapf-tracker/commit/7e27948d407d7b37c8f21eb7805cb14f5ce9b52c))
+
+### Documentation
+
+* Add example images and donate buttons ([`e95f3b2`](https://github.com/eifinger/hass-fressnapf-tracker/commit/e95f3b2a80ba1f84cf78221996c610c216682239))
+
 ## v0.2.0 (2023-12-16)
 
 ### Feature

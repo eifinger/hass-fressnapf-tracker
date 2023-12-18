@@ -39,7 +39,7 @@ The easiest way to add this to your Homeassistant installation is using [HACS](h
 [buymecoffeebadge]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?style=for-the-badge
 [commits-shield]: https://img.shields.io/github/commit-activity/y/eifinger/hass-fressnapf-tracker?style=for-the-badge
 [commits]: https://github.com/eifinger/hass-fressnapf-tracker/commits/main
-[exampleimg]: https://github.com/eifinger/hass-fressnapf-tracker/blob/main/example.png?raw=true
+[exampleimg]: https://github.com/eifinger/hass-fressnapf-tracker/blob/main/docs/images/example.png?raw=true
 [license-shield]: https://img.shields.io/github/license/eifinger/hass-fressnapf-tracker.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/badge/maintainer-Kevin%20Stillhammer%20%40eifinger-blue.svg?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/eifinger/hass-fressnapf-tracker.svg?style=for-the-badge

@@ -38,6 +38,20 @@ async def get_response_fixture(respx_mock):
     yield mocked
 
 
+@pytest.fixture(name="get_response_light_on")
+async def get_response_light_on_fixture(respx_mock):
+    """Mock the get response."""
+    mocked = respx_mock.get(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token"
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("get_response_light_on.json")),
+        )
+    )
+    yield mocked
+
+
 @pytest.fixture(name="change_deep_sleep")
 async def change_deep_sleep_fixture(respx_mock):
     """Mock the put response."""
@@ -52,11 +66,27 @@ async def change_deep_sleep_fixture(respx_mock):
     yield mocked
 
 
-@pytest.fixture(name="change_led_brightness")
-async def change_led_brightness_fixture(respx_mock):
+@pytest.fixture(name="change_led_brightness_100")
+async def change_led_brightness_100_fixture(respx_mock):
     """Mock the put response."""
     mocked = respx_mock.put(
-        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber/change_led_brightness?devicetoken=test_device_token"
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber/change_led_brightness?devicetoken=test_device_token",
+        json={"value": 100},
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("put_success_response.json")),
+        )
+    )
+    yield mocked
+
+
+@pytest.fixture(name="change_led_brightness_0")
+async def change_led_brightness_0_fixture(respx_mock):
+    """Mock the put response."""
+    mocked = respx_mock.put(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber/change_led_brightness?devicetoken=test_device_token",
+        json={"value": 0},
     ).mock(
         return_value=Response(
             200,

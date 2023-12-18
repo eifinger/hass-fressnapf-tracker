@@ -92,6 +92,7 @@ class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator):
         """Flatten some entries."""
         result["led_brightness_value"] = result["led_brightness"]["value"]
         result["led_brightness_status"] = result["led_brightness"]["status"]
+        result["led_activatable_overall"] = result["led_activatable"]["overall"]
         result["deep_sleep_value"] = result["deep_sleep"]["value"]
         result["deep_sleep_status"] = result["deep_sleep"]["status"]
         return result

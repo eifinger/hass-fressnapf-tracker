@@ -23,7 +23,7 @@
     },
     "led_brightness": {
         "status": "ok",
-        "value": 0
+        "value": 100
     },
     "deep_sleep": {
         "status": "ok",

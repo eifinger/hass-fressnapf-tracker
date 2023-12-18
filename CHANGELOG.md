@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.1 (2023-12-18)
+
+### Fix
+
+* Correct example image ([#40](https://github.com/eifinger/hass-fressnapf-tracker/issues/40)) ([`bf7f64f`](https://github.com/eifinger/hass-fressnapf-tracker/commit/bf7f64f4fa2f2e1e442338add66265c8c496dbe8))
+
 ## v1.0.0 (2023-12-18)
 
 ### Feature

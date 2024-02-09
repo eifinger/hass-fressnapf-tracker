@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: eifinger/setup-rye@v1
@@ -27,7 +27,7 @@ jobs:
         run: rye pin ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          rye sync --no-lock
+          rye sync
       - name: Lint
         run: |
           SKIP=no-commit-to-branch rye run pre-commit run --all-files

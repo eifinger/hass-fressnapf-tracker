@@ -23,7 +23,7 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "httpx>=0.24.1",
+    "httpx>=0.25.2",
 ]
 
 [build-system]
@@ -40,11 +40,11 @@ packages = ["custom_components/fressnapf_tracker"]
 managed = true
 dev-dependencies = [
     "codespell>=2.2.6",
-    "mypy>=1.7.1",
+    "mypy>=1.8.0",
     "pre-commit>=3.6.0",
-    "yamllint>=1.33.0",
-    "ruff>=0.1.8",
-    "pytest-homeassistant-custom-component>=0.13.46",
+    "yamllint>=1.34.0",
+    "ruff>=0.2.1",
+    "pytest-homeassistant-custom-component>=0.13.99",
     "pre-commit-hooks>=4.5.0",
     "respx>=0.20.2",
 ]

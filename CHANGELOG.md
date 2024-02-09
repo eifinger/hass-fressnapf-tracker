@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.2 (2024-02-09)
+
+### Fix
+
+* Remove use of deprecated SOURCE_TYPE_GPS ([#42](https://github.com/eifinger/hass-fressnapf-tracker/issues/42)) ([`48d5923`](https://github.com/eifinger/hass-fressnapf-tracker/commit/48d592378a5829c279f6dfa0f21ad550b18296db))
+
 ## v1.0.1 (2023-12-18)
 
 ### Fix

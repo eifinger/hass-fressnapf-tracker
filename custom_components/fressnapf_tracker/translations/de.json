@@ -12,7 +12,8 @@
         },
         "error": {
             "invalid_device_token": "Das Device Token ist falsch.",
-            "invalid_auth_token": "Das Auth Token ist falsch."
+            "invalid_auth_token": "Das Auth Token ist falsch.",
+            "invalid_serial_number": "Die Seriennummer existiert nicht."
         },
         "abort": {
             "already_configured": "Dieser Account ist bereits konfiguriert."

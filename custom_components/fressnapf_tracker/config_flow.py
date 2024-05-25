@@ -1,7 +1,13 @@
 """Adds config flow for fressnapf_tracker."""
+
 import logging
 
-from .client import InvalidAuthToken, InvalidDeviceToken, get_fressnapf_response
+from .client import (
+    InvalidAuthToken,
+    InvalidDeviceToken,
+    InvalidSerialNumber,
+    get_fressnapf_response,
+)
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.data_entry_flow import FlowResult
@@ -43,6 +49,9 @@ class FressnapfTrackerFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):  # 
                 return await self._show_config_form(user_input)
             except InvalidAuthToken:
                 self._errors["base"] = "invalid_auth_token"
+                return await self._show_config_form(user_input)
+            except InvalidSerialNumber:
+                self._errors["base"] = "invalid_serial_number"
                 return await self._show_config_form(user_input)
 
             return self.async_create_entry(

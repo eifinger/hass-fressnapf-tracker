@@ -19,6 +19,10 @@ class InvalidAuthToken(APIError):
     """Invalid auth token error."""
 
 
+class InvalidSerialNumber(APIError):
+    """Invalid serial number error."""
+
+
 async def get_fressnapf_response(
     client: AsyncClient, serial_number: int, device_token: str, auth_token: str
 ) -> dict[str, Any]:
@@ -42,6 +46,8 @@ async def get_fressnapf_response(
             raise InvalidAuthToken(result["error"])
         if "Invalid devicetoken" in result["error"]:
             raise InvalidDeviceToken(result["error"])
+        if "Device not found" in result["error"]:
+            raise InvalidSerialNumber(result["error"])
         raise Exception(result["error"])
     return _transform_result(result)
 

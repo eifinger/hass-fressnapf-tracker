@@ -1,9 +1,10 @@
 {
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
     "files.associations": {
         "*.yaml": "home-assistant"
     },
+    "ruff.nativeServer": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "python.testing.pytestArgs": [
         "tests"
     ],

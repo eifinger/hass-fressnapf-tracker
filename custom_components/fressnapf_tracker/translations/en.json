@@ -4,14 +4,15 @@
             "user": {
                 "description": "If you need help with the configuration have a look here: https://github.com/eifinger/hass-fressnapf-tracker",
                 "data": {
-                    "serialnumber": "Serialnumber",
-                    "device_token": "Device Token",
-                    "auth_token": "Auth Token"
+                    "serialnumber": "Serial number of the tracker",
+                    "device_token": "Device Token for this instance",
+                    "auth_token": "Auth Token. Not the QR Code!"
                 }
             }
         },
         "error": {
-            "auth": "Username/Password is wrong."
+            "invalid_device_token": "The Device Token is wrong.",
+            "invalid_auth_token": "The Auth Token is wrong."
         },
         "abort": {
             "already_configured": "This account is already configured."

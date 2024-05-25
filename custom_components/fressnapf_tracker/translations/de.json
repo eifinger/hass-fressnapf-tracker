@@ -4,14 +4,15 @@
             "user": {
                 "description": "Wenn du Hilfe benötigst findest du sie vielleicht hier: https://github.com/eifinger/hass-fressnapf_tracker",
                 "data": {
-                    "serialnumber": "Serialnumber",
-                    "device_token": "Device Token",
-                    "auth_token": "Auth Token"
+                    "serialnumber": "Seriennummer des Trackers",
+                    "device_token": "Device Token für diese Instanz",
+                    "auth_token": "Auth Token. Nicht der QR Code!"
                 }
             }
         },
         "error": {
-            "auth": "Benutzername oder Passwort ist falsch."
+            "invalid_device_token": "Das Device Token ist falsch.",
+            "invalid_auth_token": "Das Auth Token ist falsch."
         },
         "abort": {
             "already_configured": "Dieser Account ist bereits konfiguriert."

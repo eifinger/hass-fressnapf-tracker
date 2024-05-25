@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.2.0 (2024-05-25)
+
+### Feature
+
+* Display invalid SN in ConfigFlow ([#56](https://github.com/eifinger/hass-fressnapf-tracker/issues/56)) ([`3e9c1e7`](https://github.com/eifinger/hass-fressnapf-tracker/commit/3e9c1e7760139f1743d034a1f7f735b29c476673))
+
 ## v1.1.0 (2024-05-25)
 
 ### Feature

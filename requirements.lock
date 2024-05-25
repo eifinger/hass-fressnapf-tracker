@@ -9,9 +9,19 @@
 
 -e file:.
 anyio==4.2.0
+    # via httpx
 certifi==2024.2.2
+    # via httpcore
+    # via httpx
 h11==0.14.0
+    # via httpcore
 httpcore==1.0.2
-httpx==0.26.0
+    # via httpx
+httpx==0.27.0
+    # via hass-fressnapf-tracker
 idna==3.6
+    # via anyio
+    # via httpx
 sniffio==1.3.0
+    # via anyio
+    # via httpx

@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.0 (2024-05-25)
+
+### Feature
+
+* Show auth errors in ConfigFlow ([#55](https://github.com/eifinger/hass-fressnapf-tracker/issues/55)) ([`183bbdc`](https://github.com/eifinger/hass-fressnapf-tracker/commit/183bbdc19c64479ad9e2ae479a77faf542b26d37))
+
 ## v1.0.2 (2024-02-09)
 
 ### Fix

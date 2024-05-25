@@ -6,7 +6,7 @@ from homeassistant.const import Platform
 # Base component constants
 NAME = "fressnapf_tracker"
 DOMAIN = "fressnapf_tracker"
-VERSION = "1.0.2"
+VERSION = "1.1.0"
 ISSUE_URL = "https://github.com/eifinger/hass-fressnapf-tracker/issues"
 
 PLATFORMS = [

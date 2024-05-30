@@ -1,7 +1,10 @@
 {
     "name": "Fressnapf Tracker",
     "hacs": "1.6.0",
-    "homeassistant": "2023.3.0",
+    "homeassistant": "2024.5.0",
     "render_readme": true,
-    "country": ["DE", "AT"]
+    "country": [
+        "DE",
+        "AT"
+    ]
 }

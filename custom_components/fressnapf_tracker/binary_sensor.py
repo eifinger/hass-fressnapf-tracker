@@ -1,17 +1,17 @@
 """Binary Sensor platform for fressnapf_tracker."""
+
 from __future__ import annotations
 
+from . import FressnapfTrackerConfigEntry
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
     BinarySensorEntity,
     BinarySensorEntityDescription,
 )
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .const import DOMAIN, CONF_SERIALNUMBER
 from .entity import FressnapfTrackerEntity
 
 
@@ -33,19 +33,15 @@ BINARY_SENSOR_ENTITY_DESCRIPTIONS: tuple[BinarySensorEntityDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FressnapfTrackerConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the fressnapf_tracker binary_sensors."""
 
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     binary_sensors: list = []
     for sensor_description in BINARY_SENSOR_ENTITY_DESCRIPTIONS:
-        binary_sensors.append(
-            FressnapfTrackerBinarySensor(
-                coordinator, entry.data.get(CONF_SERIALNUMBER), sensor_description
-            )
-        )
+        binary_sensors.append(FressnapfTrackerBinarySensor(coordinator, sensor_description))
 
     async_add_entities(binary_sensors, True)
 

@@ -8,9 +8,14 @@
 ![Project Maintenance][maintenance-shield]
 [![BuyMeCoffee][buymecoffeebadge]][buymecoffee]
 
+> [!IMPORTANT]
+> This component is a private development and not connected to Fressnapf in any way.
+
 _Homeassistant Custom Component for [Fressnapf Tracker](https://tracker.fressnapf.de/)._
 
-*This component is in a beta stage. It is a private development and not connected to Fressnapf in any way.*
+> [!WARNING]
+> You need to use reverse engineering to find out the device token and auth token needed for this integration.
+> There is no support offered for this. Have a look at the [issues][issues] for more information.
 
 ![example][exampleimg]
 
@@ -44,3 +49,4 @@ The easiest way to add this to your Homeassistant installation is using [HACS](h
 [maintenance-shield]: https://img.shields.io/badge/maintainer-Kevin%20Stillhammer%20%40eifinger-blue.svg?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/eifinger/hass-fressnapf-tracker.svg?style=for-the-badge
 [releases]: https://github.com/eifinger/hass-fressnapf-tracker/releases
+[issues]: https://github.com/eifinger/hass-fressnapf-tracker/issues

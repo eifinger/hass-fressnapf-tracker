@@ -2,38 +2,42 @@
 # use `rye lock` or `rye sync` to update this lockfile
 #
 # last locked with the following flags:
-#   pre: false
+#   pre: true
 #   features: []
 #   all-features: false
 #   with-sources: false
 
 -e file:.
-acme==2.8.0
+acme==2.10.0
     # via hass-nabucasa
-aiofiles==23.2.1
-    # via mac-vendor-lookup
-aiohttp==3.9.3
+aiodns==3.2.0
+    # via homeassistant
+aiohttp==3.9.5
     # via aiohttp-cors
     # via aiohttp-fast-url-dispatcher
-    # via aiohttp-zlib-ng
-    # via bluetooth-adapters
+    # via aiohttp-fast-zlib
     # via hass-nabucasa
     # via homeassistant
-    # via mac-vendor-lookup
     # via pytest-aiohttp
+    # via snitun
 aiohttp-cors==0.7.0
     # via homeassistant
 aiohttp-fast-url-dispatcher==0.3.0
     # via homeassistant
-aiohttp-zlib-ng==0.3.1
+aiohttp-fast-zlib==0.1.0
     # via homeassistant
+aiooui==0.1.5
+    # via bluetooth-adapters
 aiosignal==1.3.1
     # via aiohttp
-anyio==4.2.0
+aiozoneinfo==0.1.0
+    # via homeassistant
+anyio==4.4.0
     # via httpx
 astral==2.2
     # via homeassistant
 async-interrupt==1.1.1
+    # via habluetooth
     # via homeassistant
 async-timeout==4.0.3
     # via snitun
@@ -49,22 +53,22 @@ awesomeversion==24.2.0
     # via homeassistant
 bcrypt==4.1.2
     # via homeassistant
-bleak==0.21.1
+bleak==0.22.1
     # via bleak-retry-connector
     # via bluetooth-adapters
     # via habluetooth
-bleak-retry-connector==3.4.0
+bleak-retry-connector==3.5.0
     # via habluetooth
-bluetooth-adapters==0.17.0
+bluetooth-adapters==0.19.2
     # via bluetooth-auto-recovery
     # via habluetooth
-bluetooth-auto-recovery==1.3.0
+bluetooth-auto-recovery==1.4.2
     # via habluetooth
 bluetooth-data-tools==1.19.0
     # via habluetooth
-boto3==1.34.113
+boto3==1.34.117
     # via pycognito
-botocore==1.34.113
+botocore==1.34.117
     # via boto3
     # via s3transfer
 btsocket==0.2.0
@@ -74,8 +78,9 @@ certifi==2024.2.2
     # via httpcore
     # via httpx
     # via requests
-cffi==1.16.0
+cffi==1.17.0rc1
     # via cryptography
+    # via pycares
 cfgv==3.4.0
     # via pre-commit
 charset-normalizer==3.3.2
@@ -84,7 +89,7 @@ ciso8601==2.3.1
     # via hass-nabucasa
     # via homeassistant
 codespell==2.3.0
-coverage==7.4.3
+coverage==7.5.0
     # via pytest-cov
     # via pytest-homeassistant-custom-component
 cryptography==42.0.5
@@ -93,22 +98,24 @@ cryptography==42.0.5
     # via hass-nabucasa
     # via homeassistant
     # via josepy
+    # via pyjwt
     # via pyopenssl
-    # via python-jose
     # via snitun
-dbus-fast==2.21.1
+dbus-fast==2.21.3
     # via bluetooth-adapters
 distlib==0.3.8
     # via virtualenv
-ecdsa==0.19.0
-    # via python-jose
 envs==1.4
     # via pycognito
-execnet==2.0.2
+execnet==2.1.1
     # via pytest-xdist
-filelock==3.13.1
+filelock==3.14.0
     # via virtualenv
-freezegun==1.4.0
+fnv-hash-fast==0.5.0
+    # via homeassistant
+fnvhash==0.1.0
+    # via fnv-hash-fast
+freezegun==1.5.0
     # via pytest-freezer
     # via pytest-homeassistant-custom-component
 frozenlist==1.4.1
@@ -116,23 +123,23 @@ frozenlist==1.4.1
     # via aiosignal
 h11==0.14.0
     # via httpcore
-habluetooth==2.4.0
+habluetooth==3.1.1
     # via home-assistant-bluetooth
-hass-nabucasa==0.78.0
+hass-nabucasa==0.81.0
     # via homeassistant
 home-assistant-bluetooth==1.12.0
     # via homeassistant
-homeassistant==2024.3.3
+homeassistant==2024.6.0b4
     # via pytest-homeassistant-custom-component
-httpcore==1.0.2
+httpcore==1.0.5
     # via httpx
 httpx==0.27.0
     # via hass-fressnapf-tracker
     # via homeassistant
     # via respx
-identify==2.5.33
+identify==2.5.36
     # via pre-commit
-idna==3.6
+idna==3.7
     # via anyio
     # via httpx
     # via requests
@@ -141,7 +148,7 @@ ifaddr==0.2.0
     # via homeassistant
 iniconfig==2.0.0
     # via pytest
-jinja2==3.1.3
+jinja2==3.1.4
     # via homeassistant
 jmespath==1.0.1
     # via boto3
@@ -150,8 +157,6 @@ josepy==1.14.0
     # via acme
 lru-dict==1.3.0
     # via homeassistant
-mac-vendor-lookup==0.1.12
-    # via bluetooth-adapters
 markupsafe==2.1.5
     # via jinja2
 mock-open==1.4.0
@@ -162,55 +167,65 @@ multidict==6.0.5
 mypy==1.10.0
 mypy-extensions==1.0.0
     # via mypy
-nodeenv==1.8.0
+nodeenv==1.9.0
     # via pre-commit
 numpy==1.26.0
     # via pytest-homeassistant-custom-component
-orjson==3.9.15
+orjson==3.10.3
     # via homeassistant
-packaging==23.2
+packaging==24.0
     # via homeassistant
+    # via pipdeptree
     # via pytest
     # via pytest-sugar
 paho-mqtt==1.6.1
     # via pytest-homeassistant-custom-component
 pathspec==0.12.1
     # via yamllint
-pip==24.0
+pillow==10.3.0
     # via homeassistant
-pipdeptree==2.15.1
+pip==24.1b1
+    # via homeassistant
+    # via pipdeptree
+pipdeptree==2.19.0
     # via pytest-homeassistant-custom-component
-platformdirs==4.2.0
+platformdirs==4.2.2
     # via virtualenv
-pluggy==1.4.0
+pluggy==1.5.0
     # via pytest
 pre-commit==3.7.1
 pre-commit-hooks==4.6.0
-pyasn1==0.6.0
-    # via python-jose
-    # via rsa
-pycognito==2023.5.0
+psutil==5.9.8
+    # via psutil-home-assistant
+psutil-home-assistant==0.0.1
+    # via homeassistant
+pycares==4.4.0
+    # via aiodns
+pycognito==2024.5.1
     # via hass-nabucasa
-pycparser==2.21
+pycparser==2.22
     # via cffi
-pydantic==1.10.12
+pydantic==1.10.15
     # via pytest-homeassistant-custom-component
 pyjwt==2.8.0
+    # via hass-nabucasa
     # via homeassistant
+    # via pycognito
 pylint-per-file-ignores==1.3.2
     # via pytest-homeassistant-custom-component
-pyobjc-core==9.2
+pyobjc-core==10.3
     # via bleak
     # via pyobjc-framework-cocoa
     # via pyobjc-framework-corebluetooth
     # via pyobjc-framework-libdispatch
-pyobjc-framework-cocoa==9.2
+pyobjc-framework-cocoa==10.3
     # via pyobjc-framework-corebluetooth
-pyobjc-framework-corebluetooth==9.2
+    # via pyobjc-framework-libdispatch
+pyobjc-framework-corebluetooth==10.3
     # via bleak
-pyobjc-framework-libdispatch==9.2
+pyobjc-framework-libdispatch==10.3
     # via bleak
-pyopenssl==24.0.0
+pyopenssl==24.1.0
     # via acme
     # via homeassistant
     # via josepy
@@ -218,49 +233,47 @@ pyrfc3339==1.1
     # via acme
 pyric==0.1.6.3
     # via bluetooth-auto-recovery
-pytest==8.0.2
+pytest==8.2.0
     # via pytest-aiohttp
     # via pytest-asyncio
     # via pytest-cov
     # via pytest-freezer
+    # via pytest-github-actions-annotate-failures
     # via pytest-homeassistant-custom-component
     # via pytest-picked
     # via pytest-socket
     # via pytest-sugar
-    # via pytest-test-groups
     # via pytest-timeout
     # via pytest-unordered
     # via pytest-xdist
     # via syrupy
 pytest-aiohttp==1.0.5
     # via pytest-homeassistant-custom-component
-pytest-asyncio==0.23.5
+pytest-asyncio==0.23.6
     # via pytest-aiohttp
     # via pytest-homeassistant-custom-component
-pytest-cov==4.1.0
+pytest-cov==5.0.0
     # via pytest-homeassistant-custom-component
 pytest-freezer==0.4.8
     # via pytest-homeassistant-custom-component
-pytest-homeassistant-custom-component==0.13.109
+pytest-github-actions-annotate-failures==0.2.0
+    # via pytest-homeassistant-custom-component
+pytest-homeassistant-custom-component==0.13.128
 pytest-picked==0.5.0
     # via pytest-homeassistant-custom-component
 pytest-socket==0.7.0
     # via pytest-homeassistant-custom-component
 pytest-sugar==1.0.0
     # via pytest-homeassistant-custom-component
-pytest-test-groups==1.0.3
+pytest-timeout==2.3.1
     # via pytest-homeassistant-custom-component
-pytest-timeout==2.2.0
+pytest-unordered==0.6.0
     # via pytest-homeassistant-custom-component
-pytest-unordered==0.5.2
+pytest-xdist==3.6.1
     # via pytest-homeassistant-custom-component
-pytest-xdist==3.3.1
-    # via pytest-homeassistant-custom-component
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via botocore
     # via freezegun
-python-jose==3.3.0
-    # via pycognito
 python-slugify==8.0.4
     # via homeassistant
 pytz==2024.1
@@ -276,32 +289,28 @@ requests==2.31.0
     # via homeassistant
     # via pycognito
     # via requests-mock
-requests-mock==1.11.0
+requests-mock==1.12.1
     # via pytest-homeassistant-custom-component
-respx==0.20.2
+respx==0.21.1
     # via pytest-homeassistant-custom-component
-rsa==4.9
-    # via python-jose
 ruamel-yaml==0.18.6
     # via pre-commit-hooks
 ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
-ruff==0.4.5
+ruff==0.4.7
 s3transfer==0.10.1
     # via boto3
-setuptools==69.0.3
+setuptools==70.0.0
     # via acme
-    # via nodeenv
 six==1.16.0
-    # via ecdsa
     # via python-dateutil
-    # via requests-mock
-sniffio==1.3.0
+sniffio==1.3.1
     # via anyio
     # via httpx
-snitun==0.36.2
+snitun==0.39.1
     # via hass-nabucasa
-sqlalchemy==2.0.27
+sqlalchemy==2.0.30
+    # via homeassistant
     # via pytest-homeassistant-custom-component
 syrupy==4.6.1
     # via pytest-homeassistant-custom-component
@@ -309,14 +318,17 @@ termcolor==2.4.0
     # via pytest-sugar
 text-unidecode==1.3
     # via python-slugify
-tqdm==4.66.2
+tqdm==4.66.4
     # via pytest-homeassistant-custom-component
 typing-extensions==4.12.0
-    # via bleak
     # via homeassistant
     # via mypy
     # via pydantic
     # via sqlalchemy
+tzdata==2024.1
+    # via aiozoneinfo
+uart-devices==0.1.0
+    # via bluetooth-adapters
 ulid-transform==0.9.0
     # via homeassistant
 urllib3==1.26.18
@@ -326,7 +338,9 @@ urllib3==1.26.18
 usb-devices==0.4.5
     # via bluetooth-adapters
     # via bluetooth-auto-recovery
-virtualenv==20.25.0
+uv==0.1.43
+    # via pytest-homeassistant-custom-component
+virtualenv==20.26.2
     # via pre-commit
 voluptuous==0.13.1
     # via homeassistant
@@ -337,5 +351,3 @@ yamllint==1.35.1
 yarl==1.9.4
     # via aiohttp
     # via homeassistant
-zlib-ng==0.4.0
-    # via aiohttp-zlib-ng

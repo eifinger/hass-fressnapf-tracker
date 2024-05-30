@@ -1,4 +1,5 @@
 """Global fixtures for fressnapf_tracker integration."""
+
 import pytest
 import json
 from httpx import Response
@@ -29,6 +30,20 @@ async def get_response_fixture(respx_mock):
     """Mock the get response."""
     mocked = respx_mock.get(
         "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token"
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("get_response.json")),
+        )
+    )
+    yield mocked
+
+
+@pytest.fixture(name="reconfigure_get_response")
+async def reconfigure_get_response_fixture(respx_mock):
+    """Mock the get response."""
+    mocked = respx_mock.get(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token_reconfigure"
     ).mock(
         return_value=Response(
             200,

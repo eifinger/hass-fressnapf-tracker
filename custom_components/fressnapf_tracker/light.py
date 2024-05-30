@@ -1,7 +1,8 @@
 """Light platform for fressnapf_tracker."""
+
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
@@ -9,16 +10,16 @@ from homeassistant.components.light import (
     LightEntity,
     LightEntityDescription,
 )
-from homeassistant.config_entries import ConfigEntry
+from . import FressnapfTrackerConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.httpx_client import get_async_client
 
-from .const import CONF_AUTH_TOKEN, CONF_DEVICE_TOKEN, DOMAIN, CONF_SERIALNUMBER
+from .const import CONF_AUTH_TOKEN, CONF_DEVICE_TOKEN, CONF_SERIALNUMBER
 from .entity import FressnapfTrackerEntity
 
 
-@dataclass
+@dataclass(frozen=True)
 class FressnapfTrackerLightEntityDescription(LightEntityDescription):
     """Describes fressnapf_tracker light entity."""
 
@@ -36,25 +37,23 @@ LIGHT_ENTITY_DESCRIPTIONS: tuple[FressnapfTrackerLightEntityDescription, ...] = 
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FressnapfTrackerConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the fressnapf_tracker binary_sensors."""
 
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     entities: list = []
     for description in LIGHT_ENTITY_DESCRIPTIONS:
-        entities.append(
-            FressnapfTrackerLight(
-                coordinator, entry.data.get(CONF_SERIALNUMBER), description
-            )
-        )
+        entities.append(FressnapfTrackerLight(coordinator, description))
 
     async_add_entities(entities, True)
 
 
 class FressnapfTrackerLight(FressnapfTrackerEntity, LightEntity):
     """fressnapf_tracker light."""
+
+    entity_description: FressnapfTrackerLightEntityDescription
 
     _attr_color_mode: ColorMode = ColorMode.BRIGHTNESS
     _attr_supported_color_modes: set[ColorMode] = {ColorMode.BRIGHTNESS}
@@ -81,28 +80,28 @@ class FressnapfTrackerLight(FressnapfTrackerEntity, LightEntity):
     @property
     def available(self) -> bool:
         """Return if entity is available."""
-        return super().available and bool(
-            self.coordinator.data.get("led_activatable_overall", False)
-        )
+        return super().available and bool(self.coordinator.data.get("led_activatable_overall", False))
 
     @property
     def brightness(self) -> int | None:
         """Return the brightness of this light between 0..255."""
         if self.entity_description.key in self.coordinator.data:
-            return int(
-                round((self.coordinator.data[self.entity_description.key] / 100) * 255)
-            )
+            return int(round((self.coordinator.data[self.entity_description.key] / 100) * 255))
         return None
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn on the device."""
+        if TYPE_CHECKING:
+            assert self.entity_description.url_path
         brightness = kwargs.get(ATTR_BRIGHTNESS, 255)
         brightness = int((brightness / 255) * 100)
         await self._send_request(self.entity_description.url_path, brightness)
         await self.coordinator.async_request_refresh()
 
-    async def async_turn_off(self) -> None:
+    async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn off the device."""
+        if TYPE_CHECKING:
+            assert self.entity_description.url_path
         await self._send_request(self.entity_description.url_path, 0)
         await self.coordinator.async_request_refresh()
 

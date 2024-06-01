@@ -1,6 +1,6 @@
 [project]
 name = "hass-fressnapf-tracker"
-version = "1.0.0"
+version = "1.3.0"
 description = "Homeassistant Custom Component for fressnapf_tracker"
 license = "MIT"
 readme = "README.md"

@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.3.0 (2024-06-01)
+
+### Feature
+
+* Add Reconfiguration ([#57](https://github.com/eifinger/hass-fressnapf-tracker/issues/57)) ([`f197d3e`](https://github.com/eifinger/hass-fressnapf-tracker/commit/f197d3e3b4de9fd6df68905074710f7b9ad38f8a))
+
 ## v1.2.0 (2024-05-25)
 
 ### Feature

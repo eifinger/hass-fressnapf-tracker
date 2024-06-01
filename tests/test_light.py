@@ -1,4 +1,5 @@
 """Tests for the fressnapf_tracker light."""
+
 from pytest_homeassistant_custom_component.common import (
     MockConfigEntry,
 )

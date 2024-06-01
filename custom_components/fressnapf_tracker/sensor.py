@@ -1,4 +1,5 @@
 """Sensor platform for fressnapf_tracker."""
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -9,15 +10,14 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorStateClass,
 )
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import PERCENTAGE
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .const import DOMAIN, CONF_SERIALNUMBER
 from .entity import FressnapfTrackerEntity
+from . import FressnapfTrackerConfigEntry
 
 
 SENSOR_ENTITY_DESCRIPTIONS: tuple[SensorEntityDescription, ...] = (
@@ -34,19 +34,15 @@ SENSOR_ENTITY_DESCRIPTIONS: tuple[SensorEntityDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FressnapfTrackerConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the fressnapf_tracker sensors."""
 
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     sensors: list = []
     for sensor_description in SENSOR_ENTITY_DESCRIPTIONS:
-        sensors.append(
-            FressnapfTrackerSensor(
-                coordinator, entry.data.get(CONF_SERIALNUMBER), sensor_description
-            )
-        )
+        sensors.append(FressnapfTrackerSensor(coordinator, sensor_description))
 
     async_add_entities(sensors, True)
 
@@ -63,5 +59,5 @@ class FressnapfTrackerSensor(FressnapfTrackerEntity, SensorEntity):
     def native_value(self) -> StateType | datetime:
         """Return the state of the resources if it has been received yet."""
         if self.entity_description.key in self.coordinator.data:
-            return self.coordinator.data[self.entity_description.key]
+            return int(self.coordinator.data[self.entity_description.key])
         return None

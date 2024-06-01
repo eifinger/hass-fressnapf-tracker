@@ -2,31 +2,25 @@
 
 from homeassistant.components.device_tracker import SourceType
 from homeassistant.components.device_tracker.config_entry import TrackerEntity
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from .const import (
-    DOMAIN,
-    CONF_SERIALNUMBER,
-)
 from .entity import FressnapfTrackerBaseEntity
+from . import FressnapfTrackerConfigEntry, FressnapfTrackerDataUpdateCoordinator
 
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FressnapfTrackerConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the fressnapf_tracker device_trackers."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
 
     async_add_entities(
         [
             FressnapfTrackerDeviceTracker(
                 coordinator,
-                entry.data.get(CONF_SERIALNUMBER),
             )
         ],
         True,
@@ -38,12 +32,11 @@ class FressnapfTrackerDeviceTracker(FressnapfTrackerBaseEntity, TrackerEntity):
 
     def __init__(
         self,
-        coordinator: DataUpdateCoordinator,
-        tracker_id: int,
+        coordinator: FressnapfTrackerDataUpdateCoordinator,
     ):
-        super().__init__(coordinator, tracker_id)
+        super().__init__(coordinator)
         self._attr_icon = "mdi:paw"
-        self._attr_unique_id = tracker_id
+        self._attr_unique_id = str(coordinator.config.serial_number)
         self._attr_name = self.coordinator.data["name"]
 
     @property

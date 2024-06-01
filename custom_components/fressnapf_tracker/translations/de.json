@@ -8,6 +8,13 @@
                     "device_token": "Device Token für diese Instanz",
                     "auth_token": "Auth Token. Nicht der QR Code!"
                 }
+            },
+            "reconfigure": {
+                "description": "Wenn du Hilfe benötigst findest du sie vielleicht hier: https://github.com/eifinger/hass-fressnapf_tracker",
+                "data": {
+                    "device_token": "Device Token für diese Instanz",
+                    "auth_token": "Auth Token. Nicht der QR Code!"
+                }
             }
         },
         "error": {
@@ -16,7 +23,8 @@
             "invalid_serial_number": "Die Seriennummer existiert nicht."
         },
         "abort": {
-            "already_configured": "Dieser Account ist bereits konfiguriert."
+            "already_configured": "Dieser Account ist bereits konfiguriert.",
+            "reconfigure_successful": "Re-configuration war erfolgreich!"
         }
     }
 }

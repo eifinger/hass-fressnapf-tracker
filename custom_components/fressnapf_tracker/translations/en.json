@@ -8,6 +8,13 @@
                     "device_token": "Device Token for this instance",
                     "auth_token": "Auth Token. Not the QR Code!"
                 }
+            },
+            "reconfigure": {
+                "description": "If you need help with the configuration have a look here: https://github.com/eifinger/hass-fressnapf-tracker",
+                "data": {
+                    "device_token": "Device Token for this instance",
+                    "auth_token": "Auth Token. Not the QR Code!"
+                }
             }
         },
         "error": {
@@ -16,7 +23,8 @@
             "invalid_serial_number": "The Serial Number does not exist."
         },
         "abort": {
-            "already_configured": "This account is already configured."
+            "already_configured": "This account is already configured.",
+            "reconfigure_successful": "Re-configuration was successful"
         }
     }
 }

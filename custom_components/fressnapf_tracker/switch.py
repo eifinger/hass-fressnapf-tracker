@@ -1,22 +1,24 @@
 """Switch platform for fressnapf_tracker."""
+
 from __future__ import annotations
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from homeassistant.components.switch import (
     SwitchDeviceClass,
     SwitchEntity,
     SwitchEntityDescription,
 )
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.httpx_client import get_async_client
 
-from .const import CONF_AUTH_TOKEN, CONF_DEVICE_TOKEN, DOMAIN, CONF_SERIALNUMBER
+from .const import CONF_AUTH_TOKEN, CONF_DEVICE_TOKEN, CONF_SERIALNUMBER
 from .entity import FressnapfTrackerEntity
+from . import FressnapfTrackerConfigEntry
 
 
-@dataclass
+@dataclass(frozen=True)
 class FressnapfTrackerSwitchEntityDescription(SwitchEntityDescription):
     """Describes fressnapf_tracker switch entity."""
 
@@ -35,25 +37,23 @@ SWITCH_ENTITY_DESCRIPTIONS: tuple[FressnapfTrackerSwitchEntityDescription, ...] 
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FressnapfTrackerConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the fressnapf_tracker switches."""
 
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     entities: list = []
     for description in SWITCH_ENTITY_DESCRIPTIONS:
-        entities.append(
-            FressnapfTrackerSwitch(
-                coordinator, entry.data.get(CONF_SERIALNUMBER), description
-            )
-        )
+        entities.append(FressnapfTrackerSwitch(coordinator, description))
 
     async_add_entities(entities, True)
 
 
 class FressnapfTrackerSwitch(FressnapfTrackerEntity, SwitchEntity):
     """fressnapf_tracker binary_sensor for general information."""
+
+    entity_description: FressnapfTrackerSwitchEntityDescription
 
     async def _send_request(self, url_path: str, on: bool) -> None:
         """Send request to change device state."""
@@ -79,13 +79,17 @@ class FressnapfTrackerSwitch(FressnapfTrackerEntity, SwitchEntity):
         """Return if entity is available."""
         return super().available and bool(self.coordinator.data)
 
-    async def async_turn_on(self) -> None:
+    async def async_turn_on(self, **kwargs) -> None:
         """Turn on the device."""
+        if TYPE_CHECKING:
+            assert self.entity_description.url_path
         await self._send_request(self.entity_description.url_path, True)
         await self.coordinator.async_request_refresh()
 
-    async def async_turn_off(self) -> None:
+    async def async_turn_off(self, **kwargs) -> None:
         """Turn off the device."""
+        if TYPE_CHECKING:
+            assert self.entity_description.url_path
         await self._send_request(self.entity_description.url_path, False)
         await self.coordinator.async_request_refresh()
 

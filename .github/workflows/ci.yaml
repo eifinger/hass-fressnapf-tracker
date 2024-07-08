@@ -20,7 +20,7 @@ jobs:
         python-version: ["3.12"]
     steps:
       - uses: actions/checkout@v4
-      - uses: eifinger/setup-rye@v3
+      - uses: eifinger/setup-rye@v4
         with:
           enable-cache: true
       - name: Pin python-version ${{ matrix.python-version }}

@@ -59,7 +59,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Python Semantic Release Noop
-        uses: python-semantic-release/python-semantic-release@c633414ae2a5518d21b852be66eac1cbc2dd8e87  # v7.34.6
+        uses: python-semantic-release/python-semantic-release@3ba53469e72452e7597dd5c61851e6fbf294420b  # v9.8.5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           additional_options: "--noop"
@@ -74,6 +74,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: Python Semantic Release
-        uses: python-semantic-release/python-semantic-release@c633414ae2a5518d21b852be66eac1cbc2dd8e87  # v7.34.6
+        uses: python-semantic-release/python-semantic-release@3ba53469e72452e7597dd5c61851e6fbf294420b  # v9.8.5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

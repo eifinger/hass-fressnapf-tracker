@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.3.1 (2024-08-25)
+
+### Fix
+
+* Handle tracker generation 2 ([#67](https://github.com/eifinger/hass-fressnapf-tracker/issues/67)) ([`db80eb9`](https://github.com/eifinger/hass-fressnapf-tracker/commit/db80eb9448d7ef3ac61b5b10edbdc5d9ea8aa262))
+
 ## v1.3.0 (2024-06-01)
 
 ### Feature

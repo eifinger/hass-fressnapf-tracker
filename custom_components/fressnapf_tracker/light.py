@@ -43,11 +43,12 @@ async def async_setup_entry(
     """Set up the fressnapf_tracker binary_sensors."""
 
     coordinator = entry.runtime_data
-    entities: list = []
-    for description in LIGHT_ENTITY_DESCRIPTIONS:
-        entities.append(FressnapfTrackerLight(coordinator, description))
+    if coordinator.data["tracker_settings"]["features"]["flash_light"]:
+        entities: list = []
+        for description in LIGHT_ENTITY_DESCRIPTIONS:
+            entities.append(FressnapfTrackerLight(coordinator, description))
 
-    async_add_entities(entities, True)
+        async_add_entities(entities, True)
 
 
 class FressnapfTrackerLight(FressnapfTrackerEntity, LightEntity):

@@ -36,7 +36,7 @@ class FressnapfTrackerDataUpdateCoordinatorConfig:
     auth_token: str
 
 
-class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Any]]):
+class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Class to manage fetching data from the API."""
 
     def __init__(self, hass: HomeAssistant, config: FressnapfTrackerDataUpdateCoordinatorConfig) -> None:
@@ -49,11 +49,11 @@ class FressnapfTrackerDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Any]
         )
         self.config = config
 
-    async def _async_update_data(self) -> dict[int, Any]:
+    async def _async_update_data(self) -> dict[str, Any]:
         """Update data via library."""
         try:
             httpx_client = get_async_client(self.hass)
-            return await get_fressnapf_response(  # type: ignore
+            return await get_fressnapf_response(
                 httpx_client, self.config.serial_number, self.config.device_token, self.config.auth_token
             )
         except Exception as exception:

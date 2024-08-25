@@ -27,3 +27,18 @@ async def test_switch_deep_sleep(hass, get_response, change_deep_sleep):
     )
     await hass.async_block_till_done()
     assert change_deep_sleep.called
+
+
+async def test_switch_deep_sleep_not_supported(hass, get_response_no_deep_sleep):
+    """Test that no switch is added when not supported."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data=MOCK_CONFIG,
+    )
+    entry.add_to_hass(hass)
+
+    await hass.config_entries.async_setup(entry.entry_id)
+
+    await hass.async_block_till_done()
+
+    assert hass.states.get("switch.test_deep_sleep") is None

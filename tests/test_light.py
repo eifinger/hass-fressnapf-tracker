@@ -69,3 +69,18 @@ async def test_light_led_brightness(hass, get_response_light_on):
 
     assert hass.states.get("light.test_led").state == "on"
     assert hass.states.get("light.test_led").attributes["brightness"] == 255
+
+
+async def test_no_light_when_no_led(hass, get_response_no_led):
+    """Test that no light gets created when the tracker has no led."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data=MOCK_CONFIG,
+    )
+    entry.add_to_hass(hass)
+
+    await hass.config_entries.async_setup(entry.entry_id)
+
+    await hass.async_block_till_done()
+
+    assert hass.states.get("light.test_led") is None

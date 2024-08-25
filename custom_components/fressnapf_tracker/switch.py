@@ -43,11 +43,12 @@ async def async_setup_entry(
     """Set up the fressnapf_tracker switches."""
 
     coordinator = entry.runtime_data
-    entities: list = []
-    for description in SWITCH_ENTITY_DESCRIPTIONS:
-        entities.append(FressnapfTrackerSwitch(coordinator, description))
+    if coordinator.data["tracker_settings"]["features"]["sleep_mode"]:
+        entities: list = []
+        for description in SWITCH_ENTITY_DESCRIPTIONS:
+            entities.append(FressnapfTrackerSwitch(coordinator, description))
 
-    async_add_entities(entities, True)
+        async_add_entities(entities, True)
 
 
 class FressnapfTrackerSwitch(FressnapfTrackerEntity, SwitchEntity):

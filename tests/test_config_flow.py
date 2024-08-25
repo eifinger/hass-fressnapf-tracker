@@ -38,6 +38,28 @@ async def test_step_user(hass: HomeAssistant) -> None:
     }
 
 
+@pytest.mark.usefixtures("get_response_no_led")
+async def test_step_user_no_led(hass: HomeAssistant) -> None:
+    """Test we get the form."""
+    result = await hass.config_entries.flow.async_init(DOMAIN, context={"source": config_entries.SOURCE_USER})
+    assert result["type"] is FlowResultType.FORM
+    assert result["errors"] == {}
+    create_result = await hass.config_entries.flow.async_configure(
+        result["flow_id"],
+        MOCK_CONFIG,
+    )
+    assert create_result["type"] is FlowResultType.CREATE_ENTRY
+    await hass.async_block_till_done()
+
+    entry = hass.config_entries.async_entries(DOMAIN)[0]
+    assert entry.title == "test_serialnumber"
+    assert entry.data == {
+        CONF_AUTH_TOKEN: "test_auth_token",
+        CONF_DEVICE_TOKEN: "test_device_token",
+        CONF_SERIALNUMBER: "test_serialnumber",
+    }
+
+
 @pytest.mark.usefixtures("reconfigure_get_response")
 async def test_reconfigure(hass: HomeAssistant) -> None:
     """Test reconfigure flow."""

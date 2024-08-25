@@ -1,0 +1,47 @@
+{
+    "name": "Test",
+    "serialnumber": "223766429",
+    "additional_parameters": "{\"isHybrid\":true,\"isShowSpecialFood\":false,\"isShowInfoText\":true,\"isSpayed\":false,\"birthday\":\"0-0-2022\",\"idfindefix\":\"\",\"activeGender\":\"female\",\"weight\":\"21.5 kg\",\"idealWeight\":\"21.5 kg\",\"activeFeed\":[\"dry\"],\"specialFoods\":[],\"breed\":[\"Labrador Retriever\",\"Podenco\"],\"weightList\":[{\"weight\":\"21.1 kg\",\"date\":1672921026347},{\"weight\":\"21.1 kg\",\"date\":1672938562762},{\"weight\":\"21.1 kg\",\"date\":1672938612879},{\"weight\":\"21.1 kg\",\"date\":1672938629727},{\"weight\":\"21.1 kg\",\"date\":1672951640709},{\"weight\":\"21.6 kg\",\"date\":1674757692105},{\"weight\":\"21.3 kg\",\"date\":1679611151685},{\"weight\":\"21.5 kg\",\"date\":1681380139784},{\"weight\":\"21.5 kg\",\"date\":1682760816983}]}",
+    "icon": null,
+    "last_position_accuracy": 17,
+    "last_position_timestamp": "2023-12-16T10:50:56.000+01:00",
+    "last_seen_timestamp": "2023-12-16T10:50:56.000+01:00",
+    "inside_geofence": false,
+    "last_seen": "about 1 hour",
+    "last_position": "about 20 hours",
+    "battery": 100,
+    "charging": false,
+    "tracker_settings": {
+        "generation": "2",
+        "type": "dog",
+        "features": {
+            "flash_light": false,
+            "sleep_mode": false,
+            "energy_saving_mode": false,
+            "geofence": false
+        },
+        "sales_channel": null
+    },
+    "led_brightness": null,
+    "deep_sleep": null,
+    "energy_saving": null,
+    "led_activatable": {
+        "has_led": false,
+        "seen_recently": false,
+        "nullmpty_battery": true,
+        "not_charging": true,
+        "overall": false
+    },
+    "servicebooking": {
+        "has_current_servicebooking": true,
+        "servicebooking_until": "2024-11-13T00:xxx",
+        "days_until_servicebooking_ends": 82
+    },
+    "position": {
+        "lat": "38.013015",
+        "lng": "9.265448",
+        "created_at": "2023-12-16T10:50:56.000+01:00",
+        "sampled_at": "2023-12-16T10:50:56.000+01:00",
+        "accuracy": 17
+    }
+}

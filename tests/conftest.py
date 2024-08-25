@@ -39,6 +39,34 @@ async def get_response_fixture(respx_mock):
     yield mocked
 
 
+@pytest.fixture(name="get_response_no_led")
+async def get_response_no_led_fixture(respx_mock):
+    """Mock the get response."""
+    mocked = respx_mock.get(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token"
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("get_response_no_led_no_sleep_mode.json")),
+        )
+    )
+    yield mocked
+
+
+@pytest.fixture(name="get_response_no_deep_sleep")
+async def get_response_no_deep_sleep_fixture(respx_mock):
+    """Mock the get response."""
+    mocked = respx_mock.get(
+        "https://itsmybike.cloud/api/pet_tracker/v2/devices/test_serialnumber?devicetoken=test_device_token"
+    ).mock(
+        return_value=Response(
+            200,
+            json=json.loads(load_fixture("get_response_no_led_no_sleep_mode.json")),
+        )
+    )
+    yield mocked
+
+
 @pytest.fixture(name="reconfigure_get_response")
 async def reconfigure_get_response_fixture(respx_mock):
     """Mock the get response."""

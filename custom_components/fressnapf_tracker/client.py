@@ -54,9 +54,11 @@ async def get_fressnapf_response(
 
 def _transform_result(result: dict[str, Any]) -> dict[str, Any]:
     """Flatten some entries."""
-    result["led_brightness_value"] = result["led_brightness"]["value"]
-    result["led_brightness_status"] = result["led_brightness"]["status"]
-    result["led_activatable_overall"] = result["led_activatable"]["overall"]
-    result["deep_sleep_value"] = result["deep_sleep"]["value"]
-    result["deep_sleep_status"] = result["deep_sleep"]["status"]
+    if result["tracker_settings"]["features"]["flash_light"]:
+        result["led_brightness_value"] = result["led_brightness"]["value"]
+        result["led_brightness_status"] = result["led_brightness"]["status"]
+        result["led_activatable_overall"] = result["led_activatable"]["overall"]
+    if result["tracker_settings"]["features"]["sleep_mode"]:
+        result["deep_sleep_value"] = result["deep_sleep"]["value"]
+        result["deep_sleep_status"] = result["deep_sleep"]["status"]
     return result

@@ -1,0 +1,29 @@
+changelog:
+  categories:
+    - title: '💥 Breaking changes'
+      labels:
+        - 'Breaking Change'
+
+    - title: '🛎️ Experimental'
+      labels:
+        - 'Experimental'
+
+    - title: '✨ New features'
+      labels:
+        - 'pr: new-feature'
+
+    - title: '⚡ Enhancements'
+      labels:
+        - 'pr: enhancement'
+
+    - title: '♻️ Refactor'
+      labels:
+        - 'pr: refactor'
+
+    - title: '🐛 Bug fixes'
+      labels:
+        - 'pr: bugfix'
+
+    - title: '🎨 Frontend updates'
+      labels:
+        - 'pr: frontend-update'

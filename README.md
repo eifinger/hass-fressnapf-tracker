@@ -1,3 +1,9 @@
+> [!IMPORTANT]
+> This custom_component is now an official integration: https://www.home-assistant.io/integrations/fressnapf_tracker
+> 
+> Please remove this custom_component before migration as no automatic transition is provided
+
+
 # fressnapf_tracker
 
 [![GitHub Release][releases-shield]][releases]
